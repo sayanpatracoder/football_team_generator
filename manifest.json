@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Football Team Builder Pro - PS5 Edition",
+  "description": "Generate balanced football teams with PS5-style UI",
+  "version": "2.0.0",
+
+  "permissions": [
+    "storage"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/logo.png",
+      "48": "assets/logo.png",
+      "128": "assets/logo.png"
+    }
+  },
+
+  "icons": {
+    "16": "assets/logo.png",
+    "48": "assets/logo.png",
+    "128": "assets/logo.png"
+  },
+
+  "web_accessible_resources": [{
+    "resources": [
+	  "dashboard.html",
+      "dashboard.css",
+      "js/*.js",
+      "lib/*.js",
+      "assets/*.png",
+      "assets/*.jpg",
+      "assets/*.jpeg",
+      "assets/*.JPG",
+      "assets/*.JPEG",
+      "assets/*.PNG"	  
+    ],
+    "matches": ["<all_urls>"]
+  }]
+}

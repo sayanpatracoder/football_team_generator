@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Football Team Builder</title>
+    <style>
+        body {
+            width: 260px;
+            height: 200px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #0a0e1a;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            gap: 12px;
+            padding: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .logo .ps-icon {
+            font-size: 32px;
+        }
+        
+        .logo .ps-text {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            font-weight: 900;
+            font-size: 20px;
+            background: linear-gradient(135deg, #00d4ff, #0070ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo .sub-text {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        button {
+            width: 220px;
+            padding: 14px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #00d4ff, #0070ff);
+            color: #ffffff;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .version {
+            font-size: 11px;
+            color: #4a5568;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <span class="ps-icon">🎮</span>
+        <span class="ps-text">PS5</span>
+        <span class="sub-text">| Team Builder</span>
+    </div>
+    <button id="openDashboard">⚽ Open Team Builder</button>
+    <div class="version">v2.0 • PS5 Edition</div>
+    <script src="js/popup.js"></script>
+</body>
+
+</html>

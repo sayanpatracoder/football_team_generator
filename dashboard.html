@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>Football Team Builder Pro - PS5 Edition</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="ps-logo">
+                <span class="ps-icon"><i class="fas fa-gamepad"></i></span>
+                <span class="ps-text">PS5</span>
+            </div>
+            <h2><i class="fas fa-futbol"></i> Team Builder</h2>
+            <div class="logo-subtitle">Ultimate Edition</div>
+        </div>
+        
+        <nav class="nav-menu">
+            <button class="menu active" data-page="players">
+                <span class="menu-icon"><i class="fas fa-users"></i></span>
+                <span class="menu-text">Players</span>
+                <span class="menu-badge" id="playerBadge">0</span>
+            </button>
+            <button class="menu" data-page="generate">
+                <span class="menu-icon"><i class="fas fa-futbol"></i></span>
+                <span class="menu-text">Generate</span>
+                <span class="menu-badge" id="teamBadge">0</span>
+            </button>
+            <button class="menu" data-page="settings">
+                <span class="menu-icon"><i class="fas fa-sliders-h"></i></span>
+                <span class="menu-text">Settings</span>
+            </button>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="player-stats">
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-check-circle"></i> Available</span>
+                    <span class="stat-value" id="availableCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label"><i class="fas fa-users"></i> Total</span>
+                    <span class="stat-value" id="totalCount">0</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- ================= PLAYERS ================= -->
+
+        <section id="players" class="page active">
+            <div class="pageHeader">
+                <div class="header-content">
+                    <div class="header-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h1>Player Management</h1>
+                        <p class="header-subtitle">Build your ultimate squad</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card glass-card">
+                <h3><i class="fas fa-user-plus"></i> Add New Player</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Player Name</label>
+                        <input id="playerName" placeholder="Enter player name..." class="ps-input">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tshirt"></i> Primary Position</label>
+                        <select id="position" class="ps-select">
+                            <option value="GK"><i class="fas fa-hand-paper"></i> Goalkeeper</option>
+                            <option value="DEF"><i class="fas fa-shield-alt"></i> Defender</option>
+                            <option value="MID" selected><i class="fas fa-bolt"></i> Midfielder</option>
+                            <option value="ST"><i class="fas fa-bullseye"></i> Striker</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-exchange-alt"></i> Secondary Position</label>
+                        <select id="secondaryPosition" class="ps-select">
+                            <option value="None">None</option>
+                            <option value="GK"><i class="fas fa-hand-paper"></i> Goalkeeper</option>
+                            <option value="DEF"><i class="fas fa-shield-alt"></i> Defender</option>
+                            <option value="MID"><i class="fas fa-bolt"></i> Midfielder</option>
+                            <option value="ST"><i class="fas fa-bullseye"></i> Striker</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-camera"></i> Player Image</label>
+                        <div class="image-upload-wrapper">
+                            <label class="upload-btn" id="chooseImageLabel">
+                                <i class="fas fa-upload"></i> Choose Image
+                                <input type="file" id="playerImageFile" accept="image/*" style="display:none;">
+                            </label>
+                            <img id="imagePreview" style="display:none;width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #00d4ff;box-shadow:0 0 20px rgba(0,212,255,0.3);">
+                            <span id="fileName" style="color:#94a3b8;font-size:14px;display:none;"></span>
+                            <button id="addPlayer" class="ps-btn ps-btn-primary">
+                                <i class="fas fa-user-plus"></i> Add Player
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card glass-card">
+                <div class="search-wrapper">
+                    <input id="search" placeholder="🔍 Search players..." class="ps-input search-input">
+                    <div class="player-stats-mini">
+                        <span class="stat-chip">
+                            <span class="chip-dot available"></span>
+                            <i class="fas fa-check-circle"></i> <span id="availableCountMini">0</span> available
+                        </span>
+                        <span class="stat-chip">
+                            <span class="chip-dot total"></span>
+                            <i class="fas fa-users"></i> <span id="totalCountMini">0</span> total
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="playerGrid" class="player-grid">
+            </div>
+        </section>
+
+        <!-- ================= GENERATE ================= -->
+
+<section id="generate" class="page">
+    <div class="pageHeader">
+        <div class="header-content">
+            <div class="header-icon"><i class="fas fa-futbol"></i></div>
+            <div>
+                <h1>Generate Teams</h1>
+                <p class="header-subtitle">Create balanced matchups</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card glass-card">
+        <!-- POSITION COUNTS -->
+        <div class="position-counts-container">
+            <div class="position-count">
+                <span class="pos-icon">🧤</span>
+                <span class="pos-name">GK</span>
+                <span class="pos-count" id="gkCountGen">0</span>
+                <span class="pos-need" id="gkNeed">(Need: 0)</span>
+            </div>
+            <div class="position-count">
+                <span class="pos-icon">🛡️</span>
+                <span class="pos-name">DEF</span>
+                <span class="pos-count" id="defCountGen">0</span>
+                <span class="pos-need" id="defNeed">(Need: 0)</span>
+            </div>
+            <div class="position-count">
+                <span class="pos-icon">⚡</span>
+                <span class="pos-name">MID</span>
+                <span class="pos-count" id="midCountGen">0</span>
+                <span class="pos-need" id="midNeed">(Need: 0)</span>
+            </div>
+            <div class="position-count">
+                <span class="pos-icon">⚽</span>
+                <span class="pos-name">ST</span>
+                <span class="pos-count" id="stCountGen">0</span>
+                <span class="pos-need" id="stNeed">(Need: 0)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card glass-card">
+        <div class="preset-section">
+            <div class="form-group">
+                <label>Preset</label>
+                <select id="preset" class="ps-select">
+				<option value="THREE_TEAM_7">3 Teams (7 players)</option>
+				<option value="THREE_TEAM_8">3 Teams (8 players)</option>
+				<option value="FOUR_TEAM_7">4 Teams (7 players)</option>
+				<option value="FOUR_TEAM_8">4 Teams (8 players)</option>
+				<option value="SIX_TEAM_7">6 Teams (7 players)</option>
+				<option value="SIX_TEAM_8">6 Teams (8 players)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="config-grid" id="configGrid">
+            <div class="form-group">
+                <label>Teams</label>
+                <input id="teams" type="number" value="3" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>Players/Team</label>
+                <input id="playersPerTeam" type="number" value="8" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>🧤 GK</label>
+                <input id="gk" type="number" value="1" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>🛡️ DEF</label>
+                <input id="def" type="number" value="2" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>⚡ MID</label>
+                <input id="mid" type="number" value="2" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>⚽ ST</label>
+                <input id="st" type="number" value="2" class="ps-input" disabled>
+            </div>
+            <div class="form-group">
+                <label>🔄 SUB</label>
+                <input id="sub" type="number" value="0" class="ps-input" disabled>
+            </div>
+        </div>
+
+        <div class="button-bar">
+            <button id="generateBtn" class="ps-btn ps-btn-generate">
+                <i class="fas fa-random"></i> Generate
+            </button>
+            <button id="shuffleBtn" class="ps-btn ps-btn-shuffle">
+                <i class="fas fa-exchange-alt"></i> Reshuffle
+            </button>
+            <button id="downloadBtn" class="ps-btn ps-btn-download">
+                <i class="fas fa-download"></i> Download
+            </button>
+            <button id="copyBtn" class="ps-btn ps-btn-copy">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+    </div>
+
+    <div id="teamContainer" class="team-container">
+    </div>
+</section>
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section id="settings" class="page">
+            <div class="pageHeader">
+                <div class="header-content">
+                    <div class="header-icon"><i class="fas fa-cog"></i></div>
+                    <div>
+                        <h1>Settings</h1>
+                        <p class="header-subtitle">Customize your experience</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card glass-card">
+                <h3><i class="fas fa-save"></i> Default Settings</h3>
+                <button id="saveDefaults" class="ps-btn ps-btn-secondary">
+                    <i class="fas fa-save"></i> Save As Default
+                </button>
+            </div>
+
+            <div class="card glass-card">
+                <h3><i class="fas fa-database"></i> Data Management</h3>
+                <p class="text-muted">Manage your data with the options below.</p>
+                
+                <div class="settings-grid">
+                    <button id="exportData" class="ps-btn ps-btn-blue">
+                        <i class="fas fa-file-export"></i> Export Data (Backup)
+                    </button>
+                    
+                    <button id="importData" class="ps-btn ps-btn-purple">
+                        <i class="fas fa-file-import"></i> Import Data (Restore)
+                    </button>
+                    
+                    <hr class="settings-divider">
+                    
+                    <button id="resetPlayers" class="ps-btn ps-btn-warning">
+                        <i class="fas fa-user-slash"></i> Reset Players Only
+                    </button>
+                    
+                    <button id="resetTeams" class="ps-btn ps-btn-warning">
+                        <i class="fas fa-undo"></i> Reset Generated Teams Only
+                    </button>
+                    
+                    <button id="resetSettings" class="ps-btn ps-btn-warning">
+                        <i class="fas fa-cog"></i> Reset Settings Only
+                    </button>
+                    
+                    <hr class="settings-divider">
+                    
+                    <button id="clearAllData" class="ps-btn ps-btn-danger">
+                        <i class="fas fa-trash"></i> Clear All Data
+                    </button>
+                </div>
+                
+                <div class="tip-box">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Export your data regularly to avoid losing your players and teams.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="lib/html2canvas.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/businessRules.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/playerManager.js"></script>
+<script src="js/balancingEngine.js"></script>
+<script src="js/teamGenerator.js"></script>
+<script src="js/exportImage.js"></script>
+<script src="js/clipboard.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/imageHandler.js"></script>
+<script src="js/app.js"></script>
+<script src="js/background.js"></script>
+</body>
+
+</html>
